@@ -1,4 +1,4 @@
-name: spring-cloud
-title: Spring Cloud
+name: spring-cloud-function
+title: Spring Cloud Function
 version: ~
-display-version: x.x.y
+display-version: x.x.x
