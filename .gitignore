@@ -1,0 +1,6 @@
+.project
+target/
+node/
+node_modules/
+build/
+package-lock.json
