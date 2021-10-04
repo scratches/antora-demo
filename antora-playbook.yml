@@ -1,13 +1,11 @@
 site:
   title: Spring
-  start_page: spring-cloud-function::index.adoc
+  start_page: spring-cloud::index.adoc
 content:
   sources:
     - url: ../function
-      branches: HEAD
       start_path: src
     - url: .
-      branches: HEAD
 ui:
   bundle:
     url: https://github.com/spring-io/antora-ui-spring/releases/download/latest/ui-bundle.zip

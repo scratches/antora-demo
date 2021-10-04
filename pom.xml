@@ -44,6 +44,16 @@
 					  <arguments>install @antora/cli@${antora.version} @antora/site-generator-default@${antora.version}</arguments>
 					</configuration>
 				  </execution>
+				  <execution>
+					<id>build</id>
+					<goals>
+					  <goal>npm</goal>
+					</goals>
+					<phase>compile</phase>
+					<configuration>
+					  <arguments>run build</arguments>
+					</configuration>
+				  </execution>
 				</executions>
 			  </plugin>			
 		</plugins>
