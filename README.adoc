@@ -51,13 +51,13 @@ modules/ROOT/pages
 modules/ROOT/pages/index.adoc
 ```
 
-The repository has 3 branches, and each one is an Antora "component". 2 of the branches (`main` and `old`) are displayed as versions "x.x.y" and "y.y.y" of the same component. The other branch is a different component. For a "real" project it is likely that it would pull in content from other repositories. All 3 branches are pulled into the `antor-playbook.yml` in one section:
+The repository has 4 branches, and each one is an Antora "component". 2 of the branches (`main` and `old`) are displayed as versions "x.x.y" and "y.y.y" of the same component. The other branches are different components. For a "real" project it is likely that these would pull in content from other repositories. All 4 branches are pulled into the `antor-playbook.yml` in one section:
 
 ```yaml
 content:
   sources:
     - url: .
-      branches: [main, function, old]
+      branches: [main, old, function, stream]
 ```
 
 The "ui" is what controls the page layout and user interactions, like version pickers, etc. This example uses a ui developed for https://spring.io:
@@ -68,3 +68,9 @@ ui:
     url: https://github.com/spring-io/antora-ui-spring/releases/download/latest/ui-bundle.zip
     snapshot: true
 ```
+
+## Navigation
+
+Each component has a `nav.adoc` for navigation - it's a list of cross references and links that show up in the nav section (on the left in the Spring UI layout). It can be composed from multiple modules, but all of them have to be in the same component.
+
+There is also a default navigation with all versions of all components. The custom navigations give the author the chance to control which versions link to which other components. The demo site has been laid out as a hierarchy - "spring-cloud" is a collection of other components (projects) with specified versions. Each component has its own internal navigation, but the UI always has breadcrumbs within the current component and a link back to the top level (the "home" icon).

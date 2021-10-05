@@ -1,2 +1,3 @@
 * xref:spring-cloud::index.adoc[Spring Cloud]
-* xref:spring-cloud-function::index.adoc[Spring Cloud Function]
+** xref:spring-cloud-function::index.adoc[Spring Cloud Function]
+** xref:spring-cloud-stream::index.adoc[Spring Cloud Stream]

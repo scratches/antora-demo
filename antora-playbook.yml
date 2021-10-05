@@ -4,7 +4,7 @@ site:
 content:
   sources:
     - url: .
-      branches: [main, function, old]
+      branches: [main, old, function, stream]
 ui:
   bundle:
     url: https://github.com/spring-io/antora-ui-spring/releases/download/latest/ui-bundle.zip
