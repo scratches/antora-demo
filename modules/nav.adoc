@@ -1,4 +1,4 @@
 * xref:index.adoc[One]
-* xref:index.adoc[Two]
-* xref:index.adoc[Three]
-* xref:index.adoc[Four]
+* xref:index.adoc#two[Two]
+* xref:index.adoc#three[Three]
+* xref:index.adoc#four[Four]
