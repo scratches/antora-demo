@@ -2,3 +2,5 @@ name: spring-cloud
 title: Spring Cloud
 version: 0.0.1
 display-version: y.y.y
+nav:
+- modules/nav.adoc
