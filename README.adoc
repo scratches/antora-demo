@@ -1,0 +1,19 @@
+This project demonstrate how to build https://docs.antora.org/[Antora] docs from Maven. Antora is a Node.js utility so we can use the https://github.com/eirslett/frontend-maven-plugin[Front End Plugin] and some https://www.npmjs.com/[npm] configuration.
+
+To see it working, clone this repository and then on the command line:
+
+```
+$ ./mvnw install
+```
+
+Then visit the generated site at `build/site/index.html`. You can rebuild using Maven (compile goal) or using the `npm` utility script and the "build" script configured in `package.json`:
+
+```
+$ ./npm run build 
+
+> docs@1.0.0 build /home/dsyer/dev/spring/docs-test/docs
+> antora --stacktrace generate --url https://cloud.spring.io antora-playbook.yml
+
+Site generation complete!
+View the site by visiting file:///home/.../build/site in a browser.
+```
