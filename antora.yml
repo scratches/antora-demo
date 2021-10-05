@@ -1,6 +1,6 @@
-name: spring-cloud-function
-title: Spring Cloud Function
+name: spring-cloud-stream
+title: Spring Cloud Stream
 version: ~
-display-version: x.x.x
+display-version: z.z.z
 nav:
 - modules/nav.adoc
