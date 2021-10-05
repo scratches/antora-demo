@@ -3,9 +3,8 @@ site:
   start_page: spring-cloud::index.adoc
 content:
   sources:
-    - url: ../function
-      start_path: src
     - url: .
+      branches: [main, function, old]
 ui:
   bundle:
     url: https://github.com/spring-io/antora-ui-spring/releases/download/latest/ui-bundle.zip
