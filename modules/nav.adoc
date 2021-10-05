@@ -1,2 +1,4 @@
-* xref:spring-cloud::index.adoc[Spring Cloud]
-* xref:index.adoc[Spring Cloud Function]
+* xref:index.adoc[One]
+* xref:index.adoc[Two]
+* xref:index.adoc[Three]
+* xref:index.adoc[Four]
