@@ -44,14 +44,14 @@ display-version: x.x.y
 The `modules` directory contains "packages", one of which is optionally "ROOT". The ROOT package goes in the "home" of the component. A package can have Asciidoctor sources in its "pages" directory. So this is a minimal component:
 
 ```
-$ find modules
-modules
-modules/ROOT
-modules/ROOT/pages
-modules/ROOT/pages/index.adoc
+antora.yml
+modules/
+  ROOT/
+    pages/
+      index.adoc
 ```
 
-The repository has 4 branches, and each one is an Antora "component". 2 of the branches (`main` and `old`) are displayed as versions "x.x.y" and "y.y.y" of the same component. The other branches are different components. For a "real" project it is likely that these would pull in content from other repositories. All 4 branches are pulled into the `antor-playbook.yml` in one section:
+The repository has 4 branches, and each one is an Antora "component". Two of the branches (`main` and `old`) are displayed as versions "x.x.y" and "y.y.y" of the same component. The other branches are different components. For a "real" project it is likely that these would pull in content from other repositories. All 4 branches are pulled into the `antora-playbook.yml` in one section:
 
 ```yaml
 content:
@@ -86,4 +86,6 @@ and in `modules/nav.doc`:
 ** xref:spring-cloud-stream::index.adoc[Spring Cloud Stream]
 ```
 
-There is also a default navigation with all versions of all components which shows up at the bottom of the nav pane in the Spring UI. Custom navigations give the author the chance to control which versions link to which other components. The demo site has been laid out as an umbrella - "spring-cloud" is a collection of other components (projects) with specified versions. Each component has its own internal navigation, but the UI always has breadcrumbs within the current component and a link back to the top level (the "home" icon).
+There is also a default navigation with all versions of all components which shows up at the bottom of the nav pane in the Spring UI. Custom navigations give the author the chance to control which versions link to which other components.
+
+The demo site has been laid out as an umbrella - "spring-cloud" is a collection of other components (projects) with specified versions. Each component has its own internal navigation, but the UI always has breadcrumbs within the current component and a link back to the top level (the "home" icon).
