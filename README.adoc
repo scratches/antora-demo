@@ -1,5 +1,7 @@
 This project demonstrate how to build https://docs.antora.org/[Antora] docs from Maven. Antora is a Node.js utility so we can use the https://github.com/eirslett/frontend-maven-plugin[Front End Plugin] and some https://www.npmjs.com/[npm] configuration.
 
+## Building the Site
+
 To see it working, clone this repository and then on the command line:
 
 ```
@@ -16,4 +18,53 @@ $ ./npm run build
 
 Site generation complete!
 View the site by visiting file:///home/.../build/site in a browser.
+```
+
+## What's in the Box?
+
+The build is configured in the `antora-playbook.yml`. It starts like this:
+
+```yaml
+site:
+  title: Spring
+  start_page: spring-cloud::index.adoc
+```
+
+The `start_page` is optional, but useful - if you don't have one the site has no "home page". The site home page is just a redirect to the home page of one of the components ("spring-cloud").
+
+The components are defined in a directory with a conventional layout. It has to contain `antora.yml` and a `modules` directory. An example can be seen in the "main" branch of this project. Here is `antora.yml`:
+
+```yaml
+name: spring-cloud
+title: Spring Cloud
+version: ~
+display-version: x.x.y
+```
+
+The `modules` directory contains "packages", one of which is optionally "ROOT". The ROOT package goes in the "home" of the component. A package can have Asciidoctor sources in its "pages" directory. So this is a minimal component:
+
+```
+$ find modules
+modules
+modules/ROOT
+modules/ROOT/pages
+modules/ROOT/pages/index.adoc
+```
+
+The repository has 3 branches, and each one is an Antora "component". 2 of the branches (`main` and `old`) are displayed as versions "x.x.y" and "y.y.y" of the same component. The other branch is a different component. For a "real" project it is likely that it would pull in content from other repositories. All 3 branches are pulled into the `antor-playbook.yml` in one section:
+
+```yaml
+content:
+  sources:
+    - url: .
+      branches: [main, function, old]
+```
+
+The "ui" is what controls the page layout and user interactions, like version pickers, etc. This example uses a ui developed for https://spring.io:
+
+```yaml
+ui:
+  bundle:
+    url: https://github.com/spring-io/antora-ui-spring/releases/download/latest/ui-bundle.zip
+    snapshot: true
 ```
