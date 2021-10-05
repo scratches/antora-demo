@@ -2,3 +2,5 @@ name: spring-cloud-function
 title: Spring Cloud Function
 version: ~
 display-version: x.x.x
+nav:
+- modules/nav.adoc
