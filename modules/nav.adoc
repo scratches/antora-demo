@@ -1,2 +1,2 @@
-* xref:spring-cloud::index.adoc[Spring Cloud]
+* xref:0.0.1@spring-cloud::index.adoc[Spring Cloud]
 * xref:spring-cloud-function::index.adoc[Spring Cloud Function]
