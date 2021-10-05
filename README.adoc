@@ -71,6 +71,19 @@ ui:
 
 ## Navigation
 
-Each component has a `nav.adoc` for navigation - it's a list of cross references and links that show up in the nav section (on the left in the Spring UI layout). It can be composed from multiple modules, but all of them have to be in the same component.
+Each component has a `nav.adoc` for navigation - it's a list of cross references and links that show up in the nav section (on the left in the Spring UI layout). It can be composed from multiple modules, but all of them have to be in the same component. For the "main" branch we have in `antora.yml`:
 
-There is also a default navigation with all versions of all components. The custom navigations give the author the chance to control which versions link to which other components. The demo site has been laid out as a hierarchy - "spring-cloud" is a collection of other components (projects) with specified versions. Each component has its own internal navigation, but the UI always has breadcrumbs within the current component and a link back to the top level (the "home" icon).
+```yaml
+nav:
+- modules/nav.adoc
+```
+
+and in `modules/nav.doc`:
+
+```
+* xref:spring-cloud::index.adoc[Spring Cloud]
+** xref:spring-cloud-function::index.adoc[Spring Cloud Function]
+** xref:spring-cloud-stream::index.adoc[Spring Cloud Stream]
+```
+
+There is also a default navigation with all versions of all components which shows up at the bottom of the nav pane in the Spring UI. Custom navigations give the author the chance to control which versions link to which other components. The demo site has been laid out as an umbrella - "spring-cloud" is a collection of other components (projects) with specified versions. Each component has its own internal navigation, but the UI always has breadcrumbs within the current component and a link back to the top level (the "home" icon).
