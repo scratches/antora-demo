@@ -1,4 +1,4 @@
-This project demonstrate how to build https://docs.antora.org/[Antora] docs from Maven. Antora is a Node.js utility so we can use the https://github.com/eirslett/frontend-maven-plugin[Front End Plugin] and some https://www.npmjs.com/[npm] configuration.
+javaThis project demonstrate how to build https://docs.antora.org/[Antora] docs from Maven. Antora is a Node.js utility so we can use the https://github.com/eirslett/frontend-maven-plugin[Front End Plugin] and some https://www.npmjs.com/[npm] configuration.
 
 ## Building the Site
 
