@@ -1,17 +1,17 @@
-javaThis project demonstrate how to build https://docs.antora.org/[Antora] docs from Maven. Antora is a Node.js utility so we can use the https://github.com/eirslett/frontend-maven-plugin[Front End Plugin] and some https://www.npmjs.com/[npm] configuration.
+javaThis project demonstrate how to build [Antora](https://docs.antora.org/) docs from Maven. Antora is a Node.js utility so we can use the [Front End Plugin](https://github.com/eirslett/frontend-maven-plugin) and some [npm](https://www.npmjs.com/) configuration.
 
 ## Building the Site
 
 To see it working, clone this repository and then on the command line:
 
 ```
-$ ./mvnw install
+$ ./mvnw package antora
 ```
 
 Then visit the generated site at `build/site/index.html`. You can rebuild using Maven (compile goal) or using the `npm` utility script and the "build" script configured in `package.json`:
 
 ```
-$ ./npm run build 
+$ ./npm run build
 
 > docs@1.0.0 build /home/dsyer/dev/spring/docs-test/docs
 > antora --stacktrace generate --url https://cloud.spring.io antora-playbook.yml
@@ -20,7 +20,7 @@ Site generation complete!
 View the site by visiting file:///home/.../build/site in a browser.
 ```
 
-## What's in the Box?
+## What’s in the Box?
 
 The build is configured in the `antora-playbook.yml`. It starts like this:
 
@@ -30,7 +30,7 @@ site:
   start_page: spring-cloud::index.adoc
 ```
 
-The `start_page` is optional, but useful - if you don't have one the site has no "home page". The site home page is just a redirect to the home page of one of the components ("spring-cloud").
+The `start_page` is optional, but useful - if you don’t have one the site has no "home page". The site home page is just a redirect to the home page of one of the components ("spring-cloud").
 
 The components are defined in a directory with a conventional layout. It has to contain `antora.yml` and a `modules` directory. An example can be seen in the "main" branch of this project. Here is `antora.yml`:
 
@@ -71,7 +71,7 @@ ui:
 
 ## Navigation
 
-Each component has a `nav.adoc` for navigation - it's a list of cross references and links that show up in the nav section (on the left in the Spring UI layout). It can be composed from multiple modules, but all of them have to be in the same component. For the "main" branch we have in `antora.yml`:
+Each component has a `nav.adoc` for navigation - it’s a list of cross references and links that show up in the nav section (on the left in the Spring UI layout). It can be composed from multiple modules, but all of them have to be in the same component. For the "main" branch we have in `antora.yml`:
 
 ```yaml
 nav:
@@ -81,9 +81,9 @@ nav:
 and in `modules/nav.doc`:
 
 ```
-* xref:spring-cloud::index.adoc[Spring Cloud]
-** xref:spring-cloud-function::index.adoc[Spring Cloud Function]
-** xref:spring-cloud-stream::index.adoc[Spring Cloud Stream]
+* [Spring Cloud](spring-cloud::index.adoc)
+** [Spring Cloud Function](spring-cloud-function::index.adoc)
+** [Spring Cloud Stream](spring-cloud-stream::index.adoc)
 ```
 
 There is also a default navigation with all versions of all components which shows up at the bottom of the nav pane in the Spring UI. Custom navigations give the author the chance to control which versions link to which other components.

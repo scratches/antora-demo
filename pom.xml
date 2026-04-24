@@ -1,61 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>spring-cloud-docs</artifactId>
+	<artifactId>spring-demo-docs</artifactId>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.5</version>
+		<version>4.0.5</version>
 	</parent>
 	<packaging>pom</packaging>
-	<name>Spring Cloud Docs</name>
-	<description>Spring Cloud Docs</description>
+	<name>Docs Demo</name>
+	<description>Docs Demo</description>
 	<properties>
-		<docs.main>spring-cloud</docs.main>
-		<node.version>v12.18.2</node.version>
-		<npm.version>6.14.5</npm.version>
-		<antora.version>3.0.0-alpha.8</antora.version>
+		<docs.main>spring-demo</docs.main>
+		<maven-exec-plugin.version>3.4.1</maven-exec-plugin.version>
+		<maven-frontend-plugin.version>1.15.1</maven-frontend-plugin.version>
+		<maven-gem-plugin.version>3.0.3</maven-gem-plugin.version>
+		<jruby.version>9.4.6.0</jruby.version>
+		<node.version>v18.17.1</node.version>
+		<io.spring.maven.antora-version>0.0.4</io.spring.maven.antora-version>
+		<jackson.version>2.21.1</jackson.version>
 	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>rubygems</groupId>
+			<artifactId>asciidoctor-reducer</artifactId>
+			<version>1.0.6</version>
+			<type>gem</type>
+		</dependency>
+	</dependencies>
 	<build>
+		<extensions>
+			<extension>
+				<groupId>org.jruby.maven</groupId>
+				<artifactId>mavengem-wagon</artifactId>
+				<version>2.0.2</version>
+			</extension>
+		</extensions>
 		<plugins>
+			<plugin>
+				<groupId>io.spring.maven.antora</groupId>
+				<artifactId>antora-maven-plugin</artifactId>
+				<version>${io.spring.maven.antora-version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<playbook>src/main/antora/antora-playbook.yml</playbook>
+					<packages>
+						<package>@antora/atlas-extension@1.0.0-alpha.1</package>
+						<package>@antora/collector-extension@1.0.0-alpha.3</package>
+						<package>@asciidoctor/tabs@1.0.0-beta.3</package>
+						<package>@springio/antora-extensions@1.5.0</package>
+						<package>@springio/asciidoctor-extensions@1.0.0-alpha.9</package>
+						<package>@djencks/asciidoctor-mathjax@0.0.9</package>
+					</packages>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>io.spring.maven.antora</groupId>
+				<artifactId>antora-component-version-maven-plugin</artifactId>
+				<version>${io.spring.maven.antora-version}</version>
+				<executions>
+					<execution>
+						<?m2e ignore?>
+						<goals>
+							<goal>antora-component-version</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jruby.maven</groupId>
+				<artifactId>gem-maven-plugin</artifactId>
+				<version>${maven-gem-plugin.version}</version>
+				<configuration>
+					<jrubyVersion>${jruby.version}</jrubyVersion>
+					<gemHome>${project.build.directory}/gems</gemHome>
+					<gemPath>${project.build.directory}/gems</gemPath>
+				</configuration>
+				<executions>
+					<execution>
+						<?m2e ignore?>
+						<id>install-gems</id>
+						<goals>
+							<goal>initialize</goal>
+							<goal>exec</goal>
+						</goals>
+						<phase>compile</phase>
+						<configuration>
+							<execArgs>${project.build.directory}/gems/bin/asciidoctor-reducer -o
+								${project.build.directory}/README.adoc
+								${basedir}/src/main/antora/modules/ROOT/pages/README.adoc</execArgs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.10.0</version>
+				<version>${maven-frontend-plugin.version}</version>
 				<executions>
-				  <execution>
-					<id>install-node</id>
-					<goals>
-					  <goal>install-node-and-npm</goal>
-					</goals>
-					<phase>initialize</phase>
-					<configuration>
-					  <nodeVersion>${node.version}</nodeVersion>
-					  <npmVersion>${npm.version}</npmVersion>
-					</configuration>
-				  </execution>
-				  <execution>
-					<id>install-antora</id>
-					<goals>
-					  <goal>npm</goal>
-					</goals>
-					<phase>initialize</phase>
-					<configuration>
-					  <arguments>install @antora/cli@${antora.version} @antora/site-generator-default@${antora.version}</arguments>
-					</configuration>
-				  </execution>
-				  <execution>
-					<id>build</id>
-					<goals>
-					  <goal>npm</goal>
-					</goals>
-					<phase>compile</phase>
-					<configuration>
-					  <arguments>run build</arguments>
-					</configuration>
-				  </execution>
+					<execution>
+						<?m2e ignore?>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+							<goal>npm</goal>
+						</goals>
+						<phase>generate-resources</phase>
+					</execution>
+					<execution>
+						<?m2e ignore?>
+						<id>generate-readme</id>
+						<goals>
+							<goal>npx</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<arguments>downdoc ${project.build.directory}/README.adoc -o
+								${project.basedir}/README.md</arguments>
+						</configuration>
+					</execution>
 				</executions>
-			  </plugin>			
+				<configuration>
+					<!-- Has to be the same as the antora lifecycle-->
+					<nodeVersion>${node.version}</nodeVersion>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<id>mavengems</id>
+			<url>mavengem:https://rubygems.org</url>
+		</repository>
+	</repositories>
 </project>

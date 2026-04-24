@@ -2,11 +2,18 @@
   "name": "docs",
   "version": "1.0.0",
   "dependencies": {
-    "@antora/cli": "^3.0.0-alpha.8",
-    "@antora/site-generator-default": "^3.0.0-alpha.8"
+    "@antora/atlas-extension": "^1.0.0-alpha.1",
+    "@antora/cli": "^3.2.0-alpha.2",
+    "@antora/collector-extension": "^1.0.0-alpha.3",
+    "@antora/site-generator-default": "^3.2.0-alpha.2",
+    "@asciidoctor/cli": "^4.0.0",
+    "@asciidoctor/tabs": "^1.0.0-beta.3",
+    "@djencks/asciidoctor-mathjax": "^0.0.9",
+    "@springio/antora-extensions": "^1.5.0",
+    "@springio/asciidoctor-extensions": "^1.0.0-alpha.9",
+    "downdoc": "^1.0.2-stable"
   },
-  "devDependencies": {},
   "scripts": {
-    "build": "antora --stacktrace generate --url https://cloud.spring.io antora-playbook.yml"
+    "build": "antora --stacktrace generate --to-dir `pwd`/target/antora/site --url https://demo.spring.io src/main/antora/antora-playbook.yml"
   }
 }

@@ -1,5 +1,6 @@
 .project
 target/
+.vscode/
 node/
 node_modules/
 build/
