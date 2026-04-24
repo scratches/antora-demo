@@ -1,5 +1,11 @@
+antora:
+  extensions:
+    - '@antora/collector-extension'
+    - require: '@springio/antora-extensions'
+      root_component_name: 'spring-demo'
 site:
   title: Spring Demo
+  url: https://docs.spring.io/spring-demo/reference
   start_page: spring-demo::index.adoc
 content:
   sources:

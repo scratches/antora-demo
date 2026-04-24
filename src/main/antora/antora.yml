@@ -4,3 +4,10 @@ version: ~
 display-version: x.x.y
 nav:
 - modules/ROOT/nav.adoc
+ext:
+  collector:
+    - run: 
+        command: mvnw process-resources
+        local: true
+      scan:
+        - dir: target/classes/static

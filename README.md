@@ -8,7 +8,9 @@ To see it working, clone this repository and then on the command line:
 $ ./mvnw package antora
 ```
 
-Then visit the generated site at `build/site/index.html`. You can rebuild using Maven (compile goal) or using the `npm` utility script and the "build" script configured in `package.json`:
+Then visit the generated site at `target/antora/site/index.html`.
+
+You can rebuild using Maven ("antora" goal) or using the `npm` utility script and the "build" script configured in `package.json`:
 
 ```
 $ ./npm run build
@@ -26,8 +28,8 @@ The build is configured in the `antora-playbook.yml`. It starts like this:
 
 ```yaml
 site:
-  title: Spring
-  start_page: spring-cloud::index.adoc
+  title: Spring Demo
+  start_page: spring-demo::index.adoc
 ```
 
 The `start_page` is optional, but useful - if you don’t have one the site has no "home page". The site home page is just a redirect to the home page of one of the components ("spring-cloud").
@@ -35,8 +37,8 @@ The `start_page` is optional, but useful - if you don’t have one the site has 
 The components are defined in a directory with a conventional layout. It has to contain `antora.yml` and a `modules` directory. An example can be seen in the "main" branch of this project. Here is `antora.yml`:
 
 ```yaml
-name: spring-cloud
-title: Spring Cloud
+name: spring-demo
+title: Spring Demo
 version: ~
 display-version: x.x.y
 ```

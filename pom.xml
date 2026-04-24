@@ -7,7 +7,6 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>4.0.5</version>
 	</parent>
-	<packaging>pom</packaging>
 	<name>Docs Demo</name>
 	<description>Docs Demo</description>
 	<properties>
