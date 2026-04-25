@@ -53,6 +53,10 @@ modules/
       index.adoc
 ```
 
+## Old Material
+
+(No longer relevant - the "old" branch is now different content)
+
 The repository has 4 branches, and each one is an Antora "component". Two of the branches (`main` and `old`) are displayed as versions "x.x.y" and "y.y.y" of the same component. The other branches are different components. For a "real" project it is likely that these would pull in content from other repositories. All 4 branches are pulled into the `antora-playbook.yml` in one section:
 
 ```yaml

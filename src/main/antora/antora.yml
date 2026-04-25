@@ -7,7 +7,10 @@ nav:
 ext:
   collector:
     - run: 
-        command: mvnw process-resources
+        command: mvnw process-classes
         local: true
       scan:
         - dir: target/classes/static
+          into: modules/ROOT/assets/attachments
+        - dir: target/reports/apidocs
+          into: modules/ROOT/assets/attachments/apidocs

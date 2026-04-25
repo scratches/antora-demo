@@ -14,6 +14,6 @@
     "downdoc": "^1.0.2-stable"
   },
   "scripts": {
-    "build": "antora --stacktrace generate --to-dir `pwd`/target/antora/site --url https://demo.spring.io src/main/antora/antora-playbook.yml"
+    "build": "antora --stacktrace generate --to-dir `pwd`/target/antora/site --url https://demo.spring.io --log-level=debug src/main/antora/antora-playbook.yml"
   }
 }

@@ -42,6 +42,20 @@
 		</extensions>
 		<plugins>
 			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven-javadoc-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>javadoc</id>
+						<goals>
+							<goal>jar</goal>
+							<goal>aggregate</goal>
+						</goals>
+						<phase>process-classes</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>io.spring.maven.antora</groupId>
 				<artifactId>antora-maven-plugin</artifactId>
 				<version>${io.spring.maven.antora-version}</version>
